@@ -4,6 +4,8 @@ import com.badlogic.gdx.Gdx;
 import org.robovm.apple.foundation.NSError;
 import org.robovm.apple.gamekit.GKAchievement;
 import org.robovm.apple.gamekit.GKLeaderboard;
+import org.robovm.apple.uikit.UIAlertView;
+import org.robovm.apple.uikit.UIAlertViewDelegateAdapter;
 import org.robovm.apple.uikit.UIApplication;
 import org.robovm.bindings.gamecenter.GameCenterListener;
 import org.robovm.bindings.gamecenter.GameCenterManager;
@@ -18,6 +20,7 @@ public class IOSGameServices implements GameServices, GameCenterListener {
     private GameCenterManager gcManager;
     private boolean isSignedIn;
     private GameServicesListener gameServicesListener;
+    private UIAlertView uiAlertView;
 
     public IOSGameServices() {
         isSignedIn = false;
@@ -47,7 +50,16 @@ public class IOSGameServices implements GameServices, GameCenterListener {
 
     @Override
     public void showLeaderBoard(String identifier) {
+        if (!isSignedIn) {
+            showNotSignedInDialog("Game Center", "You are not signed in.", "Okay");
+            return;
+        }
         gcManager.showLeaderboardView(identifier);
+    }
+
+    private void showNotSignedInDialog(String title, String message, String cancelButtonTitle) {
+        uiAlertView = new UIAlertView(title, message, null, cancelButtonTitle);
+        uiAlertView.show();
     }
 
     @Override
