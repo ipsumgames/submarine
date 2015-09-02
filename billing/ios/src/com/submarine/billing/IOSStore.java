@@ -8,9 +8,9 @@ import org.robovm.apple.storekit.SKPaymentTransaction;
 import org.robovm.apple.storekit.SKProduct;
 import org.robovm.apple.storekit.SKRequest;
 import org.robovm.apple.uikit.UIAlertView;
-import org.robovm.bindings.inapppurchase.AppStoreListener;
-import org.robovm.bindings.inapppurchase.AppStoreManager;
 import org.robovm.objc.Selector;
+import org.robovm.pods.billing.AppStoreListener;
+import org.robovm.pods.billing.AppStoreManager;
 
 import java.util.HashMap;
 import java.util.List;
