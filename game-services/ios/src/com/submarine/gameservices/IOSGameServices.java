@@ -5,10 +5,9 @@ import org.robovm.apple.foundation.NSError;
 import org.robovm.apple.gamekit.GKAchievement;
 import org.robovm.apple.gamekit.GKLeaderboard;
 import org.robovm.apple.uikit.UIAlertView;
-import org.robovm.apple.uikit.UIAlertViewDelegateAdapter;
 import org.robovm.apple.uikit.UIApplication;
-import org.robovm.bindings.gamecenter.GameCenterListener;
-import org.robovm.bindings.gamecenter.GameCenterManager;
+import org.robovm.pods.gamecenter.GameCenterListener;
+import org.robovm.pods.gamecenter.GameCenterManager;
 
 import java.util.ArrayList;
 
