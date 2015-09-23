@@ -14,7 +14,7 @@ public class DesktopGameServices implements GameServices {
     }
 
     @Override
-    public void login() {
+    public void login(boolean userInitiatedSignIn) {
         gameServicesListener.onSignInSucceeded();
     }
 

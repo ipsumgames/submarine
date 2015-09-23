@@ -1,7 +1,7 @@
 package com.submarine.gameservices;
 
 public interface GameServices {
-    void login();
+    void login(boolean userInitiatedSignIn);
 
     void logout();
 

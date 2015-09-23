@@ -40,6 +40,7 @@ public class AndroidGameServices implements GameHelper.GameHelperListener, GameS
     public AndroidGameServices(Activity activity, int clientsToUse) {
         this.activity = activity;
         gameHelper = new GameHelper(this.activity, clientsToUse);
+        gameHelper.setMaxAutoSignInAttempts(1);
         gameHelper.setup(this);
         gameHelper.enableDebugLog(true);
         isSavedGamesLoadDone = false;
@@ -66,7 +67,6 @@ public class AndroidGameServices implements GameHelper.GameHelperListener, GameS
         waitingToShowLeaderboard = false;
         waitingToShowLeaderboards = false;
         waitingToShowAchievements = false;
-        gameHelper.showFailureDialog();
         if (gameServicesListener != null) {
             gameServicesListener.onSignInFailed();
         }
@@ -97,16 +97,16 @@ public class AndroidGameServices implements GameHelper.GameHelperListener, GameS
     }
 
     @Override
-    public void login() {
-        if (gameHelper.isConnecting()) {
+    public void login(boolean userInitiatedSignIn) {
+        if (gameHelper.isConnecting() || !userInitiatedSignIn) {
             return;
         }
-        gameHelper.onStart(activity);
+        gameHelper.beginUserInitiatedSignIn();
     }
 
     @Override
     public void logout() {
-        gameHelper.onStop();
+        gameHelper.signOut();
     }
 
     @Override
@@ -315,5 +315,13 @@ public class AndroidGameServices implements GameHelper.GameHelperListener, GameS
             waitingToShowAchievements = true;
             gameHelper.beginUserInitiatedSignIn();
         }
+    }
+
+    public void onStart() {
+        gameHelper.onStart(activity);
+    }
+
+    public void onStop() {
+        gameHelper.onStop();
     }
 }

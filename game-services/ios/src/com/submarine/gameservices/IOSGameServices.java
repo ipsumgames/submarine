@@ -27,7 +27,7 @@ public class IOSGameServices implements GameServices, GameCenterListener {
 
 
     @Override
-    public void login() {
+    public void login(boolean userInitiatedSignIn) {
         if (isSignedIn) {
             return;
         }
