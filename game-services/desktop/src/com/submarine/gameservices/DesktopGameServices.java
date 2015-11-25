@@ -46,7 +46,7 @@ public class DesktopGameServices implements GameServices {
     }
 
     @Override
-    public void incrementAchievement(String achievementId, int incrementAmount) {
+    public void incrementAchievement(String achievementId, double incrementAmount) {
 
     }
 

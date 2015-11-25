@@ -68,17 +68,21 @@ public class IOSGameServices implements GameServices, GameCenterListener {
 
     @Override
     public void unlockAchievement(String achievementId) {
-
+        gcManager.reportAchievement(achievementId);
     }
 
     @Override
-    public void incrementAchievement(String achievementId, int incrementAmount) {
-
+    public void incrementAchievement(String achievementId, double incrementAmount) {
+        gcManager.reportAchievement(achievementId, incrementAmount);
     }
 
     @Override
     public void showAchievements() {
-
+        if (!isSignedIn) {
+            showNotSignedInDialog("Game Center", "You are not signed in.", "Okay");
+            return;
+        }
+        gcManager.showAchievementsView();
     }
 
     @Override
