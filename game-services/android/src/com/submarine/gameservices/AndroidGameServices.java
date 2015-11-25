@@ -287,12 +287,12 @@ public class AndroidGameServices implements GameHelper.GameHelperListener, GameS
     }
 
     @Override
-    public void incrementAchievement(final String achievementId, final int incrementAmount) {
+    public void incrementAchievement(final String achievementId, final double incrementAmount) {
         if (isSignedIn()) {
             activity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    Games.Achievements.increment(gameHelper.getApiClient(), achievementId, incrementAmount);
+                    Games.Achievements.increment(gameHelper.getApiClient(), achievementId, (int) incrementAmount);
                 }
             });
         }
