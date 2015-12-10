@@ -137,7 +137,7 @@ public class AndroidStore implements Store {
                 if (skuDetails != null) {
                     Product product = new Product();
                     product.currency = skuDetails.currency;
-                    product.price = skuDetails.priceValue.floatValue();
+                    product.price = (float) (skuDetails.priceLong / 1000000d);//skuDetails.priceValue.floatValue();
                     product.id = productId;
                     products.put(product.id, product);
                 }
